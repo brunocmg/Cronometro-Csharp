@@ -3,21 +3,26 @@
 static void Menu()
 {
     Console.Clear();
-    Console.WriteLine("S = Segundo => 10s = 10 segundos");
-    Console.WriteLine("M = Minuto => 1m = 1 minuto");
+    Console.WriteLine("S = Segundo");
+    Console.WriteLine("M = Minuto");
     Console.WriteLine("0 = Sair");
-    Console.WriteLine("Quanto tempo deseja contar?");
+    Console.WriteLine("Qual unidade deseja utilizar ?");
 
-    string data = Console.ReadLine().ToLower();
-    char type = char.Parse(data.Substring(data.Length - 1, 1));
-    int time = int.Parse(data.Substring(0, data.Length - 1));
+    string sData = Console.ReadLine().ToLower();
+    char data = sData[0];
     int multiplier = 1;
 
-    if (type == 'm')
-        multiplier = 60;
-
-    if (time == 0)
+    if (data == '0')
         Environment.Exit(0);
+
+
+    Console.WriteLine("Quanto tempo você quer contar ?");
+    string sTime = Console.ReadLine();
+    int time = int.Parse(sTime);
+
+
+    if (data == 'm')
+        multiplier = 60;
 
     PreStart(time * multiplier);
 
@@ -51,4 +56,6 @@ static void Start(int time)
     Console.Clear();
     Console.WriteLine("Stopwatch finalizado");
     Thread.Sleep(2500);
+
+    Menu();
 }
